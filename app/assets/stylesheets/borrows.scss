@@ -1,0 +1,23 @@
+// Place all the styles related to the borrows controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+.newborrow, .showborrow {
+    height: 200px;
+    width: 400px;
+
+    position: fixed;
+    top: 20%;
+    left: 50%;
+    margin-top: 0px;
+    margin-left: -200px;
+}
+
+table.borrowed_books_list th {
+	text-align: center;
+	width: 40px;
+}
+
+table.borrowed_books_list tr td {
+	text-align: center;
+}

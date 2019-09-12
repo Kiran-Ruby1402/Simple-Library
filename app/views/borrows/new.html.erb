@@ -1,0 +1,38 @@
+<div class="newborrow">
+  <h2>Borrow Summary</h2>
+
+  <%= form_for(@borrow, as: :borrow, :url => {:action => "create"} ) do |f| %>
+    <p>
+      <%= f.fields_for @book do |book_form| %>
+        <% present @book do |book|%>
+          <P>
+            <%= book_form.label :category, 'Category: ' %> 
+            <%= book_form.label(:title, book.category) %>
+          </P>
+          <P>
+            <%= book_form.label :title, 'Book title: ' %> 
+            <%= book_form.label(:title, book.display_name) %>
+          </P>
+        <% end %>
+      <% end %>
+    </p>
+
+    <% present @borrow do |borrow|%>
+      <p>
+        <%= f.label :issued_date, 'Issueing date: ' %>
+        <%= f.label(:created_at, borrow.issued_date) %>
+      </p>
+      <p>
+        <%= f.label :due_date, 'Due date: ' %>
+        <%= f.label(:due_date, borrow.due_date) %>
+      </p>
+    <% end %>
+
+    <div class="actions">
+      <%= f.submit "Confirm" %> 
+    </div>
+
+  <% end %>
+     <br/>
+    <%= button_to 'Cancel', :back, method: :get %>
+</div>

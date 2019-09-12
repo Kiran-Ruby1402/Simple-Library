@@ -1,0 +1,41 @@
+<div>
+	<h2> Borrowed Books List </h2> 
+</div>
+	<% unless @borrowed_books.blank? %>
+			<table class="borrowed_books_list">
+				<thead>
+					<th>Category</th>
+					<th>Name</th>
+					<th>Description</th>
+					<th>Issued Date</th>
+					<th>Return Date</th>
+					<th>Status</th>
+					<th></th>
+				</thead>
+				<tbody>
+					<% @borrowed_books.each do |borrowed|%>
+						<tr>
+							<% present borrowed do |borrow| %>
+								<td><%= borrow.book_category %></td>
+								<td><%= borrow.display_name %></td>
+								<td><%= borrow.book_description %></td>
+								<td><%= borrow.issued_date %></td>
+								<td><%= borrow.due_date %></td>
+								<td><%= borrow.status %></td>
+								<% if borrow.is_issued %>
+									<td><%= button_to 'Return', {:controller => "borrows", :action => "show", :id => borrowed.id},:method => :get %></td>
+								<% else %>
+									<% if borrow.is_book_available %>
+										<td><%= button_to 'Borrow again', {:controller => "borrows", :action => "new", :id => borrowed.book_id}, params: {category: borrow.book_category},:method => :get %></td>
+									<% end %>
+								<% end %>
+							 <% end %>
+						</tr>
+					<% end %>
+				</tbody>
+			</table>
+	<% else %>
+    	<h3>No books borrowed</h3>
+    	<%= link_to 'Borrow', categories_path%>
+	<% end %>
+</div>

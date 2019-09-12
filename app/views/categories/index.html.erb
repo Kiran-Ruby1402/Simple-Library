@@ -1,0 +1,12 @@
+<div>
+	<h2> Categories </h2>
+	
+	<ul>
+		<% unless @categories.blank? %>
+			<% @categories.each do |category| %>
+				<li><%= link_to category.label,  {:controller => "books", :action => "index", :id => category.id}, :method => :get %></li>
+			<% end %>	
+		<%end%>
+		<li><%= link_to 'All',  {:controller => "books", :action => "index"}, :method => :get %></li>
+	</ul>
+</div>

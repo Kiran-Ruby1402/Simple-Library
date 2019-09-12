@@ -1,0 +1,11 @@
+<% if user_signed_in? %>
+ <table>
+ 	<tbody>
+ 		<tr>
+ 			<td><%= button_to "Library", home_path, :method => :get%></td>
+ 			<td><%= button_to "Borrow New Book", categories_path, :method => :get, style: 'display: block; margin: auto'%></td>
+ 			<td id="user_name_td"><%=current_user.email%><%= button_to "Logout", destroy_user_session_path, :method => :delete, form_class: 'logout_button' %></td>
+ 		</tr>
+ 	</tbody>
+</table>
+<% end %>
